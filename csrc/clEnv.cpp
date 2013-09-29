@@ -1,7 +1,7 @@
 /***********************************************************************/
 /**   microCLAIRE                                       Yves Caseau    */
 /**   clEnv.cpp                                                        */
-/**  Copyright (C) 1998-2013 Yves Caseau. All Rights Reserved.         */
+/**  Copyright (C) 1998-2003 Yves Caseau. All Rights Reserved.         */
 /**  cf claire.h                                                       */
 /***********************************************************************/
 
@@ -11,15 +11,15 @@
 
 // This file contains the definition of the environment classes
 
-// *********************************************************************/
-// * Contents                                                          */
-// *    1. exception handling functions                                */
-// *    2. ClRes functions                                             */
-// *    3. Evaluator + ClEnv functions                                 */
-// *    4. Function Evaluation (stack_apply)                           */
-// *    5. World functions                                             */
-// *    6: Encoding & Miscellaneous (will move)                        */
-// *********************************************************************/
+/**********************************************************************/
+/** Contents                                                          */
+/**    1. exception handling functions                                */
+/**    2. ClRes functions                                             */
+/**    3. Evaluator + ClEnv functions                                 */
+/**    4. Function Evaluation (stack_apply)                           */
+/**    5. World functions                                             */
+/**    6: Encoding & Miscellaneous (will move)                        */
+/**********************************************************************/
 
 double CKernelRelease = 0.1;
 
@@ -89,10 +89,8 @@ void my_handler (int x)
 #endif
 
 // create a system_error
-// v3.3.48: static alloc for GC error (no more static memory) -> avoid loops!
-// note: this is un-elegant, since this claire error object will not have a proper OID (different memory zone)
 system_error *system_error::make(int n, OID x, OID y)
-{system_error *o = (system_error *) ((n == 3) ?  CL_alloc(4) : ClAlloc->makeAny(4));
+{system_error *o = (system_error *) ClAlloc->makeAny(4);
   o->isa = Kernel._system_error;
   o->index = n;
   o->value = x;

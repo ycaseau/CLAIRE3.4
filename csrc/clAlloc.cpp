@@ -1,7 +1,17 @@
+/** @package 
+
+        clAlloc.cpp
+        
+        Copyright(c) self 2000
+        
+        Author: YVES CASEAU
+        Created: YC  24/01/2006 07:31:18
+	Last change: YC 18/05/2006 23:03:46
+*/
 /***********************************************************************/
 /**   microCLAIRE                                       Yves Caseau    */
 /**   clAlloc.cpp                                                      */
-/**  Copyright (C) 1998-2013 Yves Caseau. All Rights Reserved.         */
+/**  Copyright (C) 1998-2003 Yves Caseau. All Rights Reserved.         */
 /**  cf claire.h                                                       */
 /***********************************************************************/
 
@@ -404,7 +414,7 @@ void ClaireAllocation::gc(char *cause)
  if (probe != NULL) {printf("--- the probe is %d -> adr = %d ----\n",probe,getADR(probe));
                      printf("*[O] = %d, 1:%d, 2:%d\n",probe[1],probe[2],probe[3]);}
  // use_as_output_port(p);
- if (ClEnv->verbose > 0 || (numGC % 10) == 0)
+ if (ClEnv->verbose > 0 || (numGC % 10) == 0 || 1 == 1)
     {princ_string(cause); princ_string(" ["); princ_integer(numGC);
      if (statusGC == 2) princ_string("] not enough memory !\n");        // v3.2.34
      else princ_string("] Garbage Collection ... \n");}
@@ -448,7 +458,7 @@ void ClaireAllocation::markStack()
            MARKCELL(ADR(n)); }
  for (i=0; i < ClEnv->index; i++) mark(ClEnv->stack[i]);
  for (i=1; i < index; i++)
-    {if ((int) gcStack[i] > (int) &Cmemory) mark(_oid_(gcStack[i]));}  // v3.4 : why this strange test ?
+    {if ((int) gcStack[i] > (int) &Cmemory) mark(_oid_(gcStack[i]));}
  for (i=1; i <= ClRes->oIndex; i++)
     {ClaireObject *x = ClRes->hvoStack[i];
       if (x != NULL) mark(_oid_(x));}      // v3.3.28: MARKCELL + markObject !
@@ -490,8 +500,7 @@ void ClaireAllocation::markObject (ClaireObject *x)
  int badADR = ADR(_oid_(x));
  #endif
  list *l = x->isa->slots;
- if (x == probe)
-    princ_string("probe found and marked --\n");
+ if (x == probe) princ_string("probe found and marked --\n");
  if (x->isa == Kernel._function) markString( ((ClaireFunction *) x)->name);
  // x->isa->open++;   // DEBUG : useful to detect GC leaks
  for (START(l);
@@ -776,7 +785,7 @@ OID claire_mem(OID n)
  else {if (OWNER(n) == Kernel._integer)
            {if (n == 1) printf("Badguy: %d, %d \n",Cmemory[BadGuy],Cmemory[BadGuy + 1]);
            }
-        else {printf("=== the probe is %d -> adr = %d ----\n",OBJECT(ClaireAny,n),ADR(n));
-              ClAlloc->probe = OBJECT(ClaireAny,n);}
+        else {printf("--- the probe is %d -> adr = %d ----\n",OBJECT(ClaireAny,n),ADR(n));
+               ClAlloc->probe = OBJECT(ClaireAny,n);}
        return n;}}
 

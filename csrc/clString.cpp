@@ -1,7 +1,17 @@
+/** @package 
+
+        clString.cpp
+        
+        Copyright(c) self 2000
+        
+        Author: YVES CASEAU
+        Created: YC  23/01/2006 07:04:26
+	Last change: YC 23/01/2006 07:42:23
+*/
 /***********************************************************************/
 /**   microCLAIRE                                       Yves Caseau    */
 /**   clString.cpp                                                     */
-/**  Copyright (C) 1998-2013 Yves Caseau. All Rights Reserved.         */
+/**  Copyright (C) 1998-2003 Yves Caseau. All Rights Reserved.         */
 /**  cf claire.h                                                       */
 /***********************************************************************/
 
@@ -13,14 +23,14 @@
 // (and the associated symbols, although they are not imported) but also
 // integers and floats. Note the double implementation for floats
 
-// ********************************************************************/
-// * Contents                                                         */
-// *    1. Strings                                                    */
-// *    2. Modules                                                    */
-// *    3. Symbol                                                     */
-// *    4. integer                                                    */
-// *    5. floats                                                     */
-// ********************************************************************/
+/*********************************************************************/
+/** Contents                                                         */
+/**    1. Strings                                                    */
+/**    2. Modules                                                    */
+/**    3. Symbol                                                     */
+/**    4. integer                                                    */
+/**    5. floats                                                     */
+/*********************************************************************/
 
 /*********************************************************************/
 /**    1: String functions                                           */
@@ -156,12 +166,7 @@ char* getenv_string(char *s)
 {char *s2 = getenv(s);
  if ( s2 == NULL) s2 = "";
  return s2;}
-
-// v3.3.48 skip n char in a string and result the
-char *skip_string(char *ss,int n)
-{if (n <= strlen(ss)) return &(ss[n]);
- else Cerror(11,n,_string_(ss)); }
-
+ 
 /*********************************************************************/
 /**    2: Modules                                                    */
 /*********************************************************************/

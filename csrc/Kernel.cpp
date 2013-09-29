@@ -1,3 +1,13 @@
+/** @package 
+
+        Kernel.cpp
+        
+        Copyright(c) self 2000
+        
+        Author: YVES CASEAU
+        Created: YC  24/01/2006 07:45:18
+	Last change: YC 24/01/2006 07:49:09
+*/
 /***********************************************************************/
 /**   microCLAIRE                                       Yves Caseau    */
 /**   Kernel.cpp pp                                                    */
@@ -660,8 +670,6 @@ value->addMethod(   list::domain(2,_module,_string),_any,
                     0,_function_(value_module,"value_module"));
 date_I->addMethod(  list::domain(1,_integer),_string,
                     0,_function_(date_I_integer,"date_I_integer"));
-_inf_inf->addMethod(list::domain(2,_string,_integer),_string,             // v3.3.48
-                    0,_function_(skip_string,"skip_string"));
 
 // === ports ==================================================================
 

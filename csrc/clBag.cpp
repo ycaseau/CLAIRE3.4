@@ -1,7 +1,17 @@
+/** @package 
+
+        clBag.cpp
+        
+        Copyright(c) self 2000
+        
+        Author: YVES CASEAU
+        Created: YC  24/01/2006 07:29:49
+        Last Change: YC  24/01/2006 07:29:49
+*/
 /***********************************************************************/
 /**   microCLAIRE                                       Yves Caseau    */
 /**   clBag.cpp                                                        */
-/**  Copyright (C) 1998-2013 Yves Caseau. All Rights Reserved.         */
+/**  Copyright (C) 1998-2003 Yves Caseau. All Rights Reserved.         */
 /**  cf claire.h                                                       */
 /***********************************************************************/
 
@@ -315,12 +325,10 @@ list *add_I_list(list *l, OID val)
 
 /* create a list with car = val and cdr = l ; l must be a list 999 */
 list *cons_any(OID val, list *l)
-{  int DEBU = (int) l->content[1];
-   list *obj = list::make();
+{  list *obj = list::make();
    int i;
    OID *x = ClAlloc->makeContent(l->length + 1);
      x[1] = val;
-     if (DEBU != (int) l->content[1]) Cerror(17,val,_oid_(l));
      // for (i = 1; i <= l->length; i++) x[i + 1] = (*l)[i];
      if(l->length) memcpy(x+2,l->content+1,sizeof(OID) * l->length);  //<sb> v3.3.33
      obj->length = l->length + 1;

@@ -244,7 +244,7 @@ void default_main()
 /*********************************************************************/
 
 // for debug
-#define getADR(A) ((((int) A - (int) &Cmemory[0]) >> 2) - 1)  // gets the ADR from the object - DEBUG, fixed in 3.4
+#define getADR(A) (((int) A - (int) &Cmemory[0]) >> 2)  // gets the ADR from the object
 #define ADR(A) (A & ADR_MASK)         /* the address                   */
 
 

@@ -1,7 +1,17 @@
+/** @package 
+
+        clPort.cpp
+        
+        Copyright(c) self 2000
+        
+        Author: YVES CASEAU
+        Created: YC  23/01/2006 06:32:52
+	Last change: YC 24/01/2006 05:55:31
+*/
 /***********************************************************************/
 /**   microCLAIRE                                       Yves Caseau    */
 /**   clPort.cpp                                                       */
-/**  Copyright (C) 1998-2013 Yves Caseau. All Rights Reserved.         */
+/**  Copyright (C) 1998-2003 Yves Caseau. All Rights Reserved.         */
 /**  cf claire.h                                                       */
 /***********************************************************************/
 
@@ -15,13 +25,13 @@
 
 // this file contains the I/O objects and methods
 
-// ********************************************************************/
-// * Contents                                                         */
-// *    1: Claire Ports                                               */
-// *    3. Reader functions                                           */
-// *    3. Character                                                  */
-// *    4. System interface (miscellaneous)                           */
-// ********************************************************************/
+/*********************************************************************/
+/** Contents                                                         */
+/**    1: Claire Ports                                               */
+/**    3. Reader functions                                           */
+/**    3. Character                                                  */
+/**    4. System interface (miscellaneous)                           */
+/*********************************************************************/
 
 // new: use the bounds to print the float properly !
 extern double CLMAXFLOAT;
@@ -291,9 +301,9 @@ OID read_number_port(ClairePort *p)
  while ((p->firstc >= '0') && (p->firstc <= '9'))
      {res = (res * 10.0) + (double) (p->firstc - '0');
       p->getNext();}
- if ((p->firstc != '.') && (p->firstc != 'e') & (p->firstc != '%'))
-    {if (res >= CLMINFLOAT && res <= CLMAXFLOAT) return ((int) res);     // read an int
-     else return _float_(res);}                                          // overflow -> float (v3.0.70)
+ if ((p->firstc != '.') && (p->firstc != 'e'))
+    {if (res >= CLMINFLOAT && res <= CLMAXFLOAT) return ((int) res);     // rean an int
+     else return _float_(res);}                                         // overflow -> float (v3.0.70)
  else {double possible = res;                  // read a float (saw a e or a .)
          if (p->firstc == '.')                 // read the decimal part
            {res = 10.0;
@@ -313,11 +323,7 @@ OID read_number_port(ClairePort *p)
                  p->getNext();}
              if (signe == '-') possible = possible / pow(10.0,  res);
              else  possible = possible * pow(10.0,  res);}
-         // v3.4 support the syntax 12.3%
-         if (p->firstc == '%')
-            {possible = possible / 100.0;
-             p->getNext();}
-         return _float_(possible);}
+          return _float_(possible);}
 }
 
 // reading a true identifier (symbol or object)
