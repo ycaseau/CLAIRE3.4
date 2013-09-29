@@ -39,4 +39,24 @@ as well as six files:
   - the CLAIRE 3.4 documentation
 
 
+Installation notes
+==================
+
+(1) the first step is to copy the files onto a directory, using GitHub or any other approaches
+(2) The environment variable CLAIRE3_HOME should be set to this root
+(3) select your makefile: Makefile.nt or Makefile.unix according to the OS 
+(4) create the subdirectories that are needed:
+        objs              
+        bin
+        bin\public
+        bin\public\ntv (for windows) or bin\public\unix (for linux)
+        bin\debug
+        bin\debug\ntv (for windows) or bin\debug\unix (for linux)
+    
+(4) nmake, or make, will build claire.exe in three steps
+
+    (a) nmake sclaire.exe  will compile all the C++ files in kernel + csrc to build the first executable.
+    (b) nmake cclaire.exe  will recompile ccmain, so that the value of CLAIRE3_HOME is seen by CLAIRE
+    (c) the last step is to copy the *.lib files where they should be :)
+
   
