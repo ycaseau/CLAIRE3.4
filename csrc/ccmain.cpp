@@ -1,5 +1,5 @@
 /***** CLAIRE Compilation of file ccmain.cl 
-         [version 3.4.0 / safety 5] Sat Aug 24 00:20:46 2013 *****/
+         [version 3.4.0 / safety 5] Sun Sep 29 11:07:05 2013 *****/
 
 #include <claire.h>
 #include <Kernel.h>
